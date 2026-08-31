@@ -1,0 +1,12 @@
+name: mse-notebooks
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - jupyterlab>=4,<5
+  - numpy>=2,<3
+  - pandas>=2,<3
+  - matplotlib>=3.9,<4
+  - seaborn>=0.13,<1
+  - scipy>=1.14,<2
+  - plotly>=5,<7
