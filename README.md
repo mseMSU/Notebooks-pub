@@ -31,7 +31,9 @@ jupyter lab
 ```
 
 Start JupyterLab from the repository root. The general analysis and plotting
-notebooks use relative paths to files in `notebooks/Data/`.
+notebooks use the shared `notebooks/nbkit.py` module to find files under
+`notebooks/Data/`. The same helper retrieves those files from this repository
+when a notebook is opened independently in Colab.
 
 ## License
 
@@ -46,4 +48,3 @@ Third-party materials remain subject to their respective licenses. Michigan
 State University names, logos, and trademarks are not licensed under these
 terms. Use of this material does not imply endorsement by Michigan State
 University.
-
