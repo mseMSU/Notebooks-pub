@@ -1,4 +1,4 @@
-% Select the highlighted base grid point (i,n) used by both diagrams.
+% Select the highlighted base grid point (i,n) used by all diagrams.
 % Keep 1 <= i <= 3 and 0 <= n <= 2 for the displayed grid extents.
 \def\selectedi{2}
 \def\selectedn{1}
