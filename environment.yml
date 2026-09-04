@@ -1,4 +1,4 @@
-name: mse-notebooks
+name: chems-notebooks
 channels:
   - conda-forge
 dependencies:
