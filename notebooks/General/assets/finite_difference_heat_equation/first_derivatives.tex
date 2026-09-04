@@ -1,41 +1,64 @@
 \documentclass[tikz,border=8pt]{standalone}
 \usetikzlibrary{arrows.meta,positioning,shapes.misc}
 
+\input{grid_selection.texinc}
+
+\definecolor{gridpoint}{RGB}{150,150,150}
 \definecolor{spaceblue}{RGB}{32,105,180}
 \definecolor{timeorange}{RGB}{220,120,35}
 
 \begin{document}
 \begin{tikzpicture}[
-    x=1.45cm,
-    y=1.20cm,
+    x=1.25cm,
+    y=1.25cm,
     >=Latex,
-    node/.style={circle,fill=black,inner sep=2.2pt},
+    node/.style={circle,draw=gridpoint,fill=gridpoint,inner sep=2.2pt},
     midpoint/.style={cross out,draw,line width=1.2pt,minimum size=6pt},
     every node/.style={font=\small}
 ]
-  \draw[->,line width=0.7pt] (-0.35,0) -- (4.55,0) node[right] {position $x$};
-  \draw[->,line width=0.7pt] (0,-0.35) -- (0,3.45) node[above] {time $t$};
+  \pgfmathtruncatemacro{\nexti}{\selectedi+1}
+  \pgfmathtruncatemacro{\nextn}{\selectedn+1}
+  \pgfmathsetmacro{\halfi}{\selectedi+0.5}
+  \pgfmathsetmacro{\halfn}{\selectedn+0.5}
+  \pgfmathsetmacro{\spatiallabeln}{\selectedn+1.5}
 
-  \foreach \i in {0,...,4}
-    \foreach \n in {0,...,3}
-      \node[node] at (\i,\n) {};
+  \begin{scope}
+    \draw[->,line width=0.7pt] (-0.35,0) -- (4.45,0) node[right] {position $x$};
+    \draw[->,line width=0.7pt] (0,-0.35) -- (0,3.45) node[above] {time $t$};
 
-  \draw[spaceblue,line width=2.6pt] (1,1) -- (2,1);
-  \node[midpoint,spaceblue] at (1.5,1) {};
-  \node[spaceblue,above=7pt] at (1.5,1) {$\left.\partial\theta/\partial x\right|_{i+1/2}^{n}$};
-  \node[below=5pt] at (1,1) {$\theta_i^n$};
-  \node[below=5pt] at (2,1) {$\theta_{i+1}^n$};
+    \foreach \gridi in {0,...,4}
+      \foreach \gridn in {0,...,3}
+        \node[node] at (\gridi,\gridn) {};
 
-  \draw[timeorange,line width=2.6pt] (3,1) -- (3,2);
-  \node[midpoint,timeorange] at (3,1.5) {};
-  \node[timeorange,right=7pt,align=left] at (3,1.5)
-    {$\left.\partial\theta/\partial t\right|_{i}^{n+1/2}$};
-  \node[left=5pt] at (3,1) {$\theta_i^n$};
-  \node[left=5pt] at (3,2) {$\theta_i^{n+1}$};
+    \draw[spaceblue,line width=2.6pt,line cap=round]
+      (\selectedi,\selectedn) -- (\nexti,\selectedn);
+    \node[midpoint,spaceblue] at (\halfi,\selectedn) {};
+    \node[spaceblue,above=7pt] at (\halfi,\selectedn)
+      {$\left.\partial\theta/\partial x\right|_{i+1/2}^{n}$};
+    \node[below=5pt] at (\selectedi,\selectedn) {$\theta_i^n$};
+    \node[below=5pt] at (\nexti,\selectedn) {$\theta_{i+1}^n$};
+    \node[align=center,text width=4.4cm,spaceblue] at (\halfi,\spatiallabeln)
+      {spatial difference centered\\between two positions};
+  \end{scope}
 
-  \node[align=center,text width=4.4cm,spaceblue] at (1.5,3.15)
-    {spatial difference\\centered between two positions};
-  \node[align=center,text width=4.4cm,timeorange] at (3.65,2.65)
-    {temporal difference\\centered between two times};
+  \begin{scope}[xshift=8cm]
+    \draw[->,line width=0.7pt] (-0.35,0) -- (4.45,0) node[right] {position $x$};
+    \draw[->,line width=0.7pt] (0,-0.35) -- (0,3.45) node[above] {time $t$};
+
+    \foreach \gridi in {0,...,4}
+      \foreach \gridn in {0,...,3}
+        \node[node] at (\gridi,\gridn) {};
+
+    \draw[timeorange,line width=2.6pt,line cap=round]
+      (\selectedi,\selectedn) -- (\selectedi,\nextn);
+    \node[midpoint,timeorange] at (\selectedi,\halfn) {};
+    \node[timeorange,left=7pt] at (\selectedi,\halfn)
+      {$\left.\partial\theta/\partial t\right|_{i}^{n+1/2}$};
+    \node[below=5pt] at (\selectedi,\selectedn) {$\theta_i^n$};
+    \node[above=5pt] at (\selectedi,\nextn) {$\theta_i^{n+1}$};
+    \node[timeorange,right=12pt,align=left,text width=4.4cm]
+      at (\selectedi,\halfn)
+      {temporal difference centered\\between two times};
+  \end{scope}
 \end{tikzpicture}
 \end{document}

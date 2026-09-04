@@ -1,0 +1,31 @@
+# LaTeX compilation intermediates
+*.aux
+*.bcf
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.pdf
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# Editor and failed-build remnants
+*.bak
+*.tmp
+*~
