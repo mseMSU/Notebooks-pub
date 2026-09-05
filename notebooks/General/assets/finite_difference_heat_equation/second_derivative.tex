@@ -24,12 +24,16 @@
   \pgfmathsetmacro{\righthalf}{\selectedi+0.5}
   \pgfmathsetmacro{\slopelabeln}{\selectedn+0.72}
   \pgfmathsetmacro{\derivativelabeln}{\selectedn+1.48}
+  \pgfmathtruncatemacro{\lastgridi}{\positiongridpoints-1}
+  \pgfmathtruncatemacro{\lastgridn}{\timegridpoints-1}
+  \pgfmathsetmacro{\positionaxisend}{\lastgridi+0.45}
+  \pgfmathsetmacro{\timeaxisend}{\lastgridn+0.45}
 
-  \draw[->,line width=0.7pt] (-0.35,0) -- (4.45,0) node[right] {position $x$};
-  \draw[->,line width=0.7pt] (0,-0.35) -- (0,3.45) node[above] {time $t$};
+  \draw[->,line width=0.7pt] (-0.35,0) -- (\positionaxisend,0) node[right] {position $x$};
+  \draw[->,line width=0.7pt] (0,-0.35) -- (0,\timeaxisend) node[above] {time $t$};
 
-  \foreach \gridi in {0,...,4}
-    \foreach \gridn in {0,...,3}
+  \foreach \gridi in {0,...,\lastgridi}
+    \foreach \gridn in {0,...,\lastgridn}
       \node[node] at (\gridi,\gridn) {};
 
   \draw[spaceblue,line width=2.6pt,line cap=round]

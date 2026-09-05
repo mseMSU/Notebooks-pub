@@ -22,14 +22,18 @@
   \pgfmathtruncatemacro{\nexti}{\selectedi+1}
   \pgfmathtruncatemacro{\previousn}{\selectedn-1}
   \pgfmathtruncatemacro{\nextn}{\selectedn+1}
+  \pgfmathtruncatemacro{\lastgridi}{\positiongridpoints-1}
+  \pgfmathtruncatemacro{\lastgridn}{\timegridpoints-1}
+  \pgfmathsetmacro{\positionaxisend}{\lastgridi+0.45}
+  \pgfmathsetmacro{\timeaxisend}{\lastgridn+0.45}
 
-  \draw[->,line width=0.7pt] (-0.55,-0.55) -- (4.45,-0.55)
+  \draw[->,line width=0.7pt] (-0.55,-0.55) -- (\positionaxisend,-0.55)
     node[right] {position $x$};
-  \draw[->,line width=0.7pt] (-0.55,-0.55) -- (-0.55,3.45)
+  \draw[->,line width=0.7pt] (-0.55,-0.55) -- (-0.55,\timeaxisend)
     node[above] {time $t$};
 
-  \foreach \gridi in {0,...,4}
-    \foreach \gridn in {0,...,3}
+  \foreach \gridi in {0,...,\lastgridi}
+    \foreach \gridn in {0,...,\lastgridn}
       \node[node] at (\gridi,\gridn) {};
 
   \node[neighbor] at (\previousi,\selectedn) {};

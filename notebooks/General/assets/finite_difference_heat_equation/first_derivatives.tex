@@ -23,13 +23,18 @@
   \pgfmathsetmacro{\halfi}{\selectedi+0.5}
   \pgfmathsetmacro{\halfn}{\selectedn+0.5}
   \pgfmathsetmacro{\spatiallabeln}{\selectedn+1.5}
+  \pgfmathtruncatemacro{\lastgridi}{\positiongridpoints-1}
+  \pgfmathtruncatemacro{\lastgridn}{\timegridpoints-1}
+  \pgfmathsetmacro{\positionaxisend}{\lastgridi+0.45}
+  \pgfmathsetmacro{\timeaxisend}{\lastgridn+0.45}
+  \pgfmathsetmacro{\secondpaneli}{\lastgridi+2.4}
 
   \begin{scope}
-    \draw[->,line width=0.7pt] (-0.35,0) -- (4.45,0) node[right] {position $x$};
-    \draw[->,line width=0.7pt] (0,-0.35) -- (0,3.45) node[above] {time $t$};
+    \draw[->,line width=0.7pt] (-0.35,0) -- (\positionaxisend,0) node[right] {position $x$};
+    \draw[->,line width=0.7pt] (0,-0.35) -- (0,\timeaxisend) node[above] {time $t$};
 
-    \foreach \gridi in {0,...,4}
-      \foreach \gridn in {0,...,3}
+    \foreach \gridi in {0,...,\lastgridi}
+      \foreach \gridn in {0,...,\lastgridn}
         \node[node] at (\gridi,\gridn) {};
 
     \draw[spaceblue,line width=2.6pt,line cap=round]
@@ -43,12 +48,12 @@
       {spatial difference centered\\between two positions};
   \end{scope}
 
-  \begin{scope}[xshift=8cm]
-    \draw[->,line width=0.7pt] (-0.35,0) -- (4.45,0) node[right] {position $x$};
-    \draw[->,line width=0.7pt] (0,-0.35) -- (0,3.45) node[above] {time $t$};
+  \begin{scope}[shift={(\secondpaneli,0)}]
+    \draw[->,line width=0.7pt] (-0.35,0) -- (\positionaxisend,0) node[right] {position $x$};
+    \draw[->,line width=0.7pt] (0,-0.35) -- (0,\timeaxisend) node[above] {time $t$};
 
-    \foreach \gridi in {0,...,4}
-      \foreach \gridn in {0,...,3}
+    \foreach \gridi in {0,...,\lastgridi}
+      \foreach \gridn in {0,...,\lastgridn}
         \node[node] at (\gridi,\gridn) {};
 
     \draw[timeorange,line width=2.6pt,line cap=round]
