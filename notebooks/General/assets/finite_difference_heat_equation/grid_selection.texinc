@@ -1,8 +1,0 @@
-% Select how many grid points are drawn in position and time.
-\def\positiongridpoints{5}
-\def\timegridpoints{5}
-
-% Select the highlighted base grid point (i,n) used by all diagrams.
-% Keep its immediate neighbors inside the configured grid extents.
-\def\selectedi{2}
-\def\selectedn{2}
